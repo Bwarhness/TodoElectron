@@ -1,5 +1,12 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
+  <div class="header">
+    <input id="Input" #f [(ngModel)]="Input" placeholder="Tilføj Opgave"  (keydown)="SaveTask($event, f)">
+  </div>
+  <div id="Content">
+      <h1 *ngFor="let item of (_tasks.Tasks | donePipe:0)"> {{item.Name}} <button (click)="AssignmentDone(item)">opgave færdig</button> </h1>
+      <hr>
+      <h2>DONE</h2>
+      <hr>
+      <h3 *ngFor="let bla of (_tasks.Tasks | donePipe:1)">{{bla.Name}}</h3>
+  </div>
 </div>

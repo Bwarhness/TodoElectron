@@ -1,24 +1,26 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, globalShortcut, Menu, MenuItem, ipcMain } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-
+import * as file from './Utils/file';
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
 function createWindow() {
-
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
+    x: size.width - 800,
     y: 0,
-    width: size.width,
-    height: size.height
+    width: 800,
+    height: size.height,
+    alwaysOnTop: false,
+    frame: false,
+    resizable: false,
+    movable: false
   });
-
   if (serve) {
     require('electron-reload')(__dirname, {
      electron: require(`${__dirname}/node_modules/electron`)});
@@ -40,6 +42,28 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null;
   });
+
+  let isFocus = true;
+
+  win.on('hide', function(e) {
+    isFocus = false;
+    e.returnValue = undefined;
+  });
+  win.on('show', function(e) {
+    isFocus = true;
+    e.returnValue = undefined;
+  });
+
+  globalShortcut.register('Ctrl+Alt+I', () => {
+    if (isFocus) {
+      win.hide();
+    } else {
+      win.show();
+    }
+    console.log('Ctrl+Alt+I is pressed');
+  });
+  file.GetFile();
+
 }
 
 try {
@@ -53,9 +77,9 @@ try {
   app.on('window-all-closed', () => {
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
-      app.quit();
-    }
+    // if (process.platform !== 'darwin') {
+    //   app.quit();
+    // }
   });
 
   app.on('activate', () => {
@@ -70,3 +94,11 @@ try {
   // Catch Error
   // throw e;
 }
+
+
+ipcMain.on('getTasks', (event, arg) => {
+  event.returnValue = file.bla;
+});
+ipcMain.on('saveTask', (event, arg) => {
+  file.SaveFile(arg);
+});

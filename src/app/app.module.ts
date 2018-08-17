@@ -19,6 +19,8 @@ import { WebviewDirective } from './directives/webview.directive';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { TasksService } from './services/tasks.service';
+import { DonePipePipe } from './pipes/done-pipe.pipe';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,7 +31,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
-    WebviewDirective
+    WebviewDirective,
+    DonePipePipe,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [ElectronService, TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

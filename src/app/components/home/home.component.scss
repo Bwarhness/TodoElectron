@@ -1,12 +1,13 @@
 .container {
   height: 100%;
-  display: flex;
-  align-items: center;
+  display: grid;
   justify-content: center;
-
-  background: url(../../../assets/background.jpg) no-repeat center fixed;
-  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-  background-size: cover; /* version standardisée */
+grid-template-rows: 100px 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: 
+  "header header header"
+  ". main ."
+  "footer footer footer";
 
   .title {
     color: white;
@@ -14,4 +15,21 @@
     padding:50px 20px;
   }
 
+}
+.header{
+  grid-area: header;
+  background-color:darkgrey;
+}
+#Input{
+  width: 100%;
+  height: 100%;
+  font-size: 50px;
+  text-align: center;
+  background: transparent;
+  border: none;
+}
+#Content{
+  grid-area: main;
+  text-align: center;
+  color:white;
 }
