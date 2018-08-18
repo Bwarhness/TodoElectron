@@ -22,4 +22,7 @@ Input: any = '';
   AssignmentDone(DoneTask: Task) {
     this._tasks.AssignmentDone(DoneTask);
   }
+  AssignmentDelete(DeletedTask: Task) {
+    this._tasks.AssignmentDelete(DeletedTask);
+  }
 }

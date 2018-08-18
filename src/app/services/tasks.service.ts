@@ -34,6 +34,11 @@ export class TasksService {
      doneTask.State = stateEnum.Completed;
      this.SaveFile(this.Tasks);
    }
+   AssignmentDelete(DeletedTask: Task) {
+    const index = this.Tasks.indexOf(DeletedTask);
+    this.Tasks.splice(index, 1);
+    this.SaveFile(this.Tasks);
+   }
    SaveFile(obj) {
     this._electron.ipcRenderer.send('saveTask', this.Tasks);
    }

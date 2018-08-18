@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="projectList">
+    <app-project-list>
+    </app-project-list>
+  </div>
   <div class="header">
     <input id="Input" #f [(ngModel)]="Input" placeholder="Tilføj Opgave"  (keydown)="SaveTask($event, f)">
   </div>
@@ -7,6 +11,8 @@
       <hr>
       <h2>DONE</h2>
       <hr>
-      <h3 *ngFor="let bla of (_tasks.Tasks | donePipe:1)">{{bla.Name}}</h3>
+      <div class="DoneAssignments">
+        <h1 *ngFor="let bla of (_tasks.Tasks | donePipe:1)">{{bla.Name}}  <button (click)="AssignmentDelete(bla)">opgave slet</button> </h1>
+      </div>
   </div>
 </div>

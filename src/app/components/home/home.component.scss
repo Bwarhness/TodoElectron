@@ -3,11 +3,11 @@
   display: grid;
   justify-content: center;
 grid-template-rows: 100px 1fr;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 4fr 3fr;
   grid-template-areas: 
-  "header header header"
-  ". main ."
-  "footer footer footer";
+  "project header header"
+  "project main ."
+  "project footer footer";
 
   .title {
     color: white;
@@ -15,6 +15,9 @@ grid-template-rows: 100px 1fr;
     padding:50px 20px;
   }
 
+}
+.projectList{
+  grid-area: project;  
 }
 .header{
   grid-area: header;
@@ -26,10 +29,14 @@ grid-template-rows: 100px 1fr;
   font-size: 50px;
   text-align: center;
   background: transparent;
-  border: none;
+  border: none;   
 }
 #Content{
   grid-area: main;
   text-align: center;
   color:white;
+}
+.DoneAssignments{
+  text-decoration: line-through;
+  color:lightgrey;
 }

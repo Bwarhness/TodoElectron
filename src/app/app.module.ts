@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TasksService } from './services/tasks.service';
 import { DonePipePipe } from './pipes/done-pipe.pipe';
+import { ProjectListComponent } from './components/home/project-list/project-list.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     WebviewDirective,
     DonePipePipe,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,
