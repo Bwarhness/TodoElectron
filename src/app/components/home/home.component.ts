@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import { Task } from '../../services/task';
+import { ElectronService } from '../../providers/electron.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,11 @@ import { Task } from '../../services/task';
 })
 export class HomeComponent implements OnInit {
 Input: any = '';
-  constructor(public _tasks: TasksService) { }
+  constructor(public _tasks: TasksService, public _electron: ElectronService) {
+    this._electron.ipcRenderer.on('focus', () => {
+      document.getElementById('Input').focus();
+    });
+   }
 
   ngOnInit() {
   }

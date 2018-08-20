@@ -19,7 +19,7 @@ function createWindow() {
     alwaysOnTop: false,
     frame: false,
     resizable: false,
-    movable: false
+    movable: true
   });
   if (serve) {
     require('electron-reload')(__dirname, {
@@ -33,7 +33,6 @@ function createWindow() {
     }));
   }
 
-  win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -49,8 +48,13 @@ function createWindow() {
     isFocus = false;
     e.returnValue = undefined;
   });
+  win.on('blur', function(e) {
+    isFocus = false;
+    e.returnValue = undefined;
+  });
   win.on('show', function(e) {
     isFocus = true;
+    win.webContents.send('focus');
     e.returnValue = undefined;
   });
 

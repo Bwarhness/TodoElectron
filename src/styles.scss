@@ -1,14 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-html, body {
+@import '~material-design-icons/iconfont/material-icons.css';
+html {
   margin: 0;
   padding: 0;
-
-  height: 100%;
-
-  background: #667db6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100%;
+  background-image: linear-gradient(45deg, 
+  #07026e 0%, 
+  #1f1fce 35%, 
+  #2ba4bd 100%);
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently */
 }
 input:focus {
   outline: none;

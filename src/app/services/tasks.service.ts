@@ -16,7 +16,7 @@ export class TasksService {
 
 
 
-
+// her der laver vi en task. Det fungere super godt.
    AddTask(input: string) {
     if (input !== '') {
       this.Tasks.unshift(
