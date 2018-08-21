@@ -9,7 +9,7 @@
   <div id="Content">
     <div *ngFor="let item of (_tasks.Tasks | donePipe:0)" class="ContentItem">
         <span> {{item.Name}} </span>
-         <div class="iconHolder" (click)="AssignmentDone(item)">
+         <div class="iconHolder" (click)="AssignmentDelete(item)">
             <i  class="material-icons">done</i>
         </div> 
     </div>

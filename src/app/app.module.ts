@@ -22,7 +22,8 @@ import { HomeComponent } from './components/home/home.component';
 import { TasksService } from './services/tasks.service';
 import { DonePipePipe } from './pipes/done-pipe.pipe';
 import { ProjectListComponent } from './components/home/project-list/project-list.component';
-import { AutofocusDirective } from './autofocus.directive';
+import { IntroComponent } from './components/intro/intro.component';
+import { AdvancedComponent } from './components/advanced/advanced.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -36,7 +37,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     WebviewDirective,
     DonePipePipe,
     ProjectListComponent,
-    AutofocusDirective
+    IntroComponent,
+    AdvancedComponent
   ],
   imports: [
     BrowserModule,
