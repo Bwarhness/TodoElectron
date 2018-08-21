@@ -6,6 +6,7 @@
 /out-tsc
 /app-builds
 main.js
+myjsonfile.json
 
 # dependencies
 /node_modules
