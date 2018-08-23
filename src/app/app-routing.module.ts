@@ -7,7 +7,7 @@ import { AdvancedComponent } from './components/advanced/advanced.component';
 const routes: Routes = [
     {
         path: '',
-        component: IntroComponent
+        component: AdvancedComponent
     },
     {
         path:'mini',

@@ -2,7 +2,7 @@ import { app, BrowserWindow, screen, globalShortcut, Menu, MenuItem, ipcMain } f
 import * as path from 'path';
 import * as url from 'url';
 import * as file from './Utils/file';
-let win, serve;
+let win, serve, miniwin;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
@@ -11,26 +11,47 @@ function createWindow() {
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
-  win = new BrowserWindow({
+  miniwin = new BrowserWindow({
     x: size.width - 800,
     y: 0,
     width: 800,
     height: size.height,
-    alwaysOnTop: false,
+    alwaysOnTop: true,
     frame: false,
     resizable: false,
+    movable: false
+  });
+  win = new BrowserWindow({
+    x: 0,
+    y: 0,
+    width: 800,
+    height: size.height,
+    alwaysOnTop: false,
+    frame: true,
+    resizable: true,
     movable: true
   });
   if (serve) {
     require('electron-reload')(__dirname, {
      electron: require(`${__dirname}/node_modules/electron`)});
     win.loadURL('http://localhost:4200');
+    miniwin.loadURL('http://localhost:4200');
   } else {
-    win.loadURL(url.format({
+    var url = url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',
-      slashes: true
-    }));
+      slashes: true,
+    })
+    win.loadURL(url);
+
+    var miniUrl = url.format({
+      pathname: path.join(__dirname, 'dist/index.html'),
+      protocol: 'file:',
+      slashes: true,
+      hash: '/mini'
+    })
+    miniwin.loadURL(miniUrl);
+
   }
 
 
@@ -42,27 +63,27 @@ function createWindow() {
     win = null;
   });
 
+  miniwin.webContents.on('did-finish-load', ()=>{
+    miniwin.webContents.send('Navigate');
+  });
+
   let isFocus = true;
 
-  win.on('hide', function(e) {
+  miniwin.on('hide', function(e) {
     isFocus = false;
     e.returnValue = undefined;
   });
-  win.on('blur', function(e) {
-    isFocus = false;
-    e.returnValue = undefined;
-  });
-  win.on('show', function(e) {
+  miniwin.on('show', function(e) {
     isFocus = true;
-    win.webContents.send('focus');
+    miniwin.webContents.send('focus');
     e.returnValue = undefined;
   });
 
   globalShortcut.register('Ctrl+Alt+I', () => {
     if (isFocus) {
-      win.hide();
+      miniwin.hide();
     } else {
-      win.show();
+      miniwin.show();
     }
     console.log('Ctrl+Alt+I is pressed');
   });
