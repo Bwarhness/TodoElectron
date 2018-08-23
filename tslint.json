@@ -47,7 +47,7 @@
     "no-bitwise": true,
     "no-console": [
       true,
-      "debug",
+      "debug",''
       "info",
       "time",
       "timeEnd",
