@@ -37,21 +37,17 @@ function createWindow() {
     win.loadURL('http://localhost:4200');
     miniwin.loadURL('http://localhost:4200');
   } else {
-    var url = url.format({
+    win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',
       slashes: true,
-    })
-    win.loadURL(url);
-
-    var miniUrl = url.format({
+    }));
+    miniwin.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',
       slashes: true,
       hash: '/mini'
-    })
-    miniwin.loadURL(miniUrl);
-
+    }));
   }
 
 

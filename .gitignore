@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /app-builds
+/app-buildss
+/app-*
 main.js
 myjsonfile.json
 
