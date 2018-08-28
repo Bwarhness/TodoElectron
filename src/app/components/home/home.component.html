@@ -4,17 +4,21 @@
     </app-project-list>
   </div> -->
   <div class="header">
-    <input id="Input" #f [(ngModel)]="Input" appAutofocus placeholder="Tilføj Opgave"  (keydown)="SaveTask($event, f)">
+    <input id="Input" #f [(ngModel)]="Input" appAutofocus placeholder="Tilføj Opgave" (keydown)="SaveTask($event, f)">
   </div>
   <div id="Content">
     <div *ngFor="let item of (_tasks.Tasks | donePipe:0)" class="ContentItem">
-        <span> {{item.Name}} </span>
-         <div class="iconHolder" (click)="AssignmentDelete(item)">
-            <i  class="material-icons">done</i>
-        </div> 
+      <span> {{item.Name}} </span>
+      <div class="iconHolder" (click)="AssignmentDone(item)">
+        <i class="material-icons">done</i>
+      </div>
     </div>
-      <!-- <div class="DoneAssignments">
-        <h1 *ngFor="let bla of (_tasks.Tasks | donePipe:1)" (click)="AssignmentDelete(bla)">  {{bla.Name}}  </h1>
-      </div> -->
+<div class="ContentItem"></div>
+    <div *ngFor="let item of (_tasks.Tasks | donePipe:1)" class="ContentItem ">
+      <span class="DoneAssignments"> {{item.Name}} </span>
+      <div class="iconHolder" (click)="AssignmentDelete(item)">
+        <i class="material-icons">delete</i>
+      </div>
+    </div>
   </div>
 </div>
